@@ -1,4 +1,4 @@
-
+import base64
 def rot_13(message):
     result = ""
     for char in message:
@@ -36,6 +36,9 @@ def columnar_transposition_encrypt(plaintext):
             ciphertext[col] += plaintext[pointer] 
             pointer += key
     return ''.join(ciphertext)
+
+
+
 
 
 
@@ -96,3 +99,5 @@ def vigenere_square(plaintext):
         ciphertext.append(new_char)
 
     return "".join(ciphertext)
+
+
