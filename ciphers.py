@@ -101,3 +101,76 @@ def vigenere_square(plaintext):
     return "".join(ciphertext)
 
 
+
+
+
+def reverse_string(plaintext):
+    reversed_string = plaintext[::-1]
+    return reversed_string
+
+
+
+
+def vigenere_square(plaintext):
+    key = 'SECRET'
+    while len(plaintext) > len(key):
+        key += key
+    key = key[:len(plaintext)]
+    ciphertext = []
+    for p, k in zip(plaintext, key):
+        if p.isalpha():
+            shift = ord(k.upper()) - ord('A')
+            if p.isupper():
+                new_char = chr(((ord(p) - ord('A') + shift) % 26) + ord('A'))
+            else:
+                new_char = chr(((ord(p) - ord('a') + shift) % 26) + ord('a'))
+        else:
+            new_char = p
+
+        ciphertext.append(new_char)
+
+    return "".join(ciphertext)
+
+def beaufort_cipher(plaintext, key):
+    while len(plaintext) > len(key):
+        key += key
+    key = key[:len(plaintext)]
+    ciphertext = []
+    for p, k in zip(plaintext, key):
+        if p.isalpha():
+            shift = ord(k.upper()) - ord('A')
+            if p.isupper():
+                new_char = chr(((ord(p) - ord('A') - shift) % 26) + ord('A'))
+            else:
+                new_char = chr(((ord(p) - ord('a') - shift) % 26) + ord('a'))
+        else:
+            new_char = p
+
+        ciphertext.append(new_char)
+
+    return "".join(ciphertext)
+
+def hex_to_binary(hex_num):
+    hex_num = hex_num.upper()
+    binary = ''
+    hex_to_binary_dict = {'0':'0000', '1':'0001', '2':'0010', '3':'0011',
+                          '4':'0100', '5':'0101', '6':'0110', '7':'0111',
+                          '8':'1000', '9':'1001', 'A':'1010', 'B':'1011',
+                          'C':'1100', 'D':'1101', 'E':'1110', 'F':'1111'}
+    for char in hex_num:
+        binary += hex_to_binary_dict[char]
+
+    return binary
+
+
+
+def binary_to_ASCII(binary):
+    binary_list = [binary[i:i+8] for i in range(0, len(binary), 8)]
+    ASCII_list = [chr(int(b, 2)) for b in binary_list]
+    return "".join(ASCII_list)
+
+
+def hex_to_string(string):
+    
+
+
