@@ -1,4 +1,5 @@
 import base64
+from string import *
 def rot_13(message):
     result = ""
     for char in message:
@@ -79,7 +80,6 @@ def reverse_string(plaintext):
 
 
 
-
 def vigenere_square(plaintext):
     key = 'SECRET'
     while len(plaintext) > len(key):
@@ -99,8 +99,6 @@ def vigenere_square(plaintext):
         ciphertext.append(new_char)
 
     return "".join(ciphertext)
-
-
 
 
 
@@ -164,13 +162,38 @@ def hex_to_binary(hex_num):
 
 
 
-def binary_to_ASCII(binary):
+def binary_to_ASCII(binary=None):
     binary_list = [binary[i:i+8] for i in range(0, len(binary), 8)]
     ASCII_list = [chr(int(b, 2)) for b in binary_list]
     return "".join(ASCII_list)
 
 
-def hex_to_string(string):
+def hex_to_string(hex_num):
+    binary = hex_to_binary(hex_num)
+    return binary_to_ASCII(binary)
+
+
+def rot_ASCII(plaintext, shift):
+    ciphertext = ""
+    for i in plaintext:
+        if i.isalphanumeric():
+            shifted = ord(i) + shift
+            if i.isupper():
+                if shifted > ord('Z'):
+                    shifted = shifted - 26
+                elif shifted < ord('A'):
+                    shifted = shifted + 26
+                ciphertext += chr(shifted)
+            else:
+                if shifted > ord('z'):
+                    shifted = shifted - 26
+                elif shifted < ord('a'):
+                    shifted = shifted + 26
+                ciphertext += chr(shifted)
+        else:
+            ciphertext += i
+    return ciphertext
+
     
 
 
